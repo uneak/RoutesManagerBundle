@@ -44,7 +44,7 @@ class RoutesLoader extends FileLoader {
 	}
 
 	public function supports($resource, $type = null) {
-		return 'admin_routes' === $type;
+		return 'uneak_routesmanager' === $type;
 	}
 
 }
