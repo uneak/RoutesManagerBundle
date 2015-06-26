@@ -9,18 +9,24 @@ use Symfony\Component\DependencyInjection\Reference;
 class RoutesCompilerPass implements CompilerPassInterface {
 
     public function process(ContainerBuilder $container) {
-        if ($container->hasDefinition('uneak.routesmanager') === false) {
+
+        if ($container->hasDefinition('uneak.routesmanager.nestedmanager') === false) {
             return;
         }
-        $definition = $container->getDefinition('uneak.routesmanager');
+        $definition = $container->getDefinition('uneak.routesmanager.nestedmanager');
         $taggedServices = $container->findTaggedServiceIds('uneak.routesmanager.route');
-		
+
         foreach ($taggedServices as $id => $tagAttributes) {
-            foreach ($tagAttributes as $attributes) {
-                $definition->addMethodCall(
-					'addRoute', array(new Reference($id), $attributes['id'], $attributes['priority'], $attributes['group'])
-                );
-            }
+            $adminDef = $container->getDefinition($id);
+            $adminDef->setConfigurator(array(
+                new Reference('uneak.routesmanager.nested.config'),
+                'configure'
+            ));
+
+            $adminDef->addMethodCall('initialize');
+            $definition->addMethodCall(
+                'addNestedRoute', array(new Reference($id))
+            );
         }
 
     }
