@@ -99,7 +99,6 @@
 				foreach ($params['columns'] as $columns) {
 					if ($columns['name'] && substr($columns['name'], 0, 1) != '_') {
 
-
 						$field = $this->_getFieldName($columns['name']);
 						$fieldAlias = str_replace(".", "_", $columns['name']);
 
