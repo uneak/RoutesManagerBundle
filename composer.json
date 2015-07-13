@@ -18,7 +18,7 @@
         "symfony/framework-bundle": "~2.6",
         "symfony/twig-bridge": "~2.6",
         "knplabs/knp-menu-bundle": "~2.0",
-        "doctrine/orm": "~2.5"
+        "doctrine/orm": "~2.4"
     },
     "require-dev": {
         "symfony/yaml": "~2.1"
