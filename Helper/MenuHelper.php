@@ -13,12 +13,10 @@
 
 		private $factory;
 		private $authorization;
-		private $requestStack;
 
-		public function __construct(FactoryInterface $factory, AuthorizationChecker $authorization, RequestStack $requestStack) {
+		public function __construct(FactoryInterface $factory, AuthorizationChecker $authorization) {
 			$this->factory = $factory;
 			$this->authorization = $authorization;
-			$this->requestStack = $requestStack;
 		}
 
 		public function getFactory() {
@@ -27,13 +25,15 @@
 
 		public function createItem(FlattenRoute $flattenRoute, $parameters = array()) {
 
+
 			if ($this->authorization->isGranted(RouteVoter::ROUTE_GRANTED, $flattenRoute) === true) {
 
 				$label = $flattenRoute->getMetaData("_label");
 				$icon = $flattenRoute->getMetaData("_icon");
 				$badge = $flattenRoute->getMetaData("_badge");
-				$requestUri = $this->requestStack->getCurrentRequest()->getRequestUri();
+				$badgeContext = $flattenRoute->getMetaData("_badge_context");
 				$uri = $flattenRoute->getRoutePath();
+
 
 				$menu = array();
 				if ($label) {
@@ -45,13 +45,15 @@
 				if ($badge) {
 					$menu['badge'] = $badge;
 				}
-				if ($uri == $requestUri) {
-					$menu['attributes'] = array("class" => "active");
+				if ($badgeContext) {
+					$menu['badge_context'] = $badgeContext;
 				}
+
 
 				$menu['uri'] = $uri;
 
 				$menu = array_merge_recursive($parameters, $menu);
+
 
 				return $this->factory->createItem($flattenRoute->getId(), $menu);
 			}
