@@ -8,7 +8,7 @@
 
 		protected $slug;
 		protected $nestedRoute;
-		protected $enabled;
+		protected $enabled = true;
 		protected $metaDatas;
 		protected $crud;
 		protected $router;
@@ -27,10 +27,10 @@
 		public function buildArray($array) {
 			parent::buildArray($array);
 			$this->nestedRoute = (isset($array['nested_route'])) ? $array['nested_route'] : null;
-			$this->enabled = (isset($array['enabled'])) ? $array['enabled'] : '';
+			$this->enabled = (isset($array['enabled'])) ? $array['enabled'] : true;
 //			$this->children = (isset($array['children'])) ? $array['children'] : array();
 			$this->parameters = (isset($array['parameters'])) ? $array['parameters'] : array();
-			$this->parent = (isset($array['parent'])) ? $array['parent'] : '';
+			$this->parent = (isset($array['parent'])) ? $array['parent'] : null;
 			$this->slug = (isset($array['slug'])) ? $array['slug'] : '';
 			$this->metaDatas = (isset($array['meta_datas'])) ? $array['meta_datas'] : array();
 			$this->crud = (isset($array['crud'])) ? $array['crud'] : '';
