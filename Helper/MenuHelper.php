@@ -32,7 +32,7 @@
 				$icon = $flattenRoute->getMetaData("_icon");
 				$badge = $flattenRoute->getMetaData("_badge");
 				$badgeContext = $flattenRoute->getMetaData("_badge_context");
-				$uri = $flattenRoute->getRoutePath();
+				$uri = ($flattenRoute->isEnabled()) ? $flattenRoute->getRoutePath() : "#";
 
 
 				$menu = array();
@@ -53,7 +53,6 @@
 				$menu['uri'] = $uri;
 
 				$menu = array_merge_recursive($parameters, $menu);
-
 
 				return $this->factory->createItem($flattenRoute->getId(), $menu);
 			}

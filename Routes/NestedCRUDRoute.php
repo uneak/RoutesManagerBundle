@@ -2,8 +2,6 @@
 
 namespace Uneak\RoutesManagerBundle\Routes;
 
-use Uneak\RoutesManagerBundle\Routes\NestedAdminRoute;
-use Uneak\RoutesManagerBundle\Routes\NestedGridRoute;
 
 class NestedCRUDRoute extends NestedAdminRoute {
 

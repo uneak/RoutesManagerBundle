@@ -2,7 +2,6 @@
 
 namespace Uneak\RoutesManagerBundle\Routes;
 
-use Uneak\RoutesManagerBundle\Routes\AbstractRoute;
 
 class NestedRoute extends AbstractRoute {
 

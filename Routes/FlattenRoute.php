@@ -114,10 +114,13 @@
 			} elseif (preg_match("/([^\\/]*)(?:\\/(.*))?$/", $path, $matches)) {
 
 				// RELATIVE : "hello/world"
-				if (isset($matches[2])) {
-					return $this->children[$matches[1]]->getChild($matches[2], $parameters);
+
+                $match1 = (isset($this->children[$matches[1]])) ? $this->children[$matches[1]] : null;
+
+				if ($match1 && isset($matches[2])) {
+					return $match1->getChild($matches[2], $parameters);
 				} else {
-					return $this->children[$matches[1]];
+					return $match1;
 				}
 			} else {
 				// TODO: exeption error path non reconnu
@@ -168,12 +171,21 @@
 
 		public function updateRouteParameters($parameters) {
 			if ($parameters && count($parameters)) {
-				foreach ($this->getParameters() as $key => $flattenParamRoute) {
-					if (isset($parameters[$key])) {
-						$flattenParamRoute->setParameterValue($parameters[$key]);
-						unset($parameters[$key]);
-					}
-				}
+
+                $range = range(0, count($parameters) - 1);
+                $isAssoc = array_keys($parameters) !== $range;
+
+                foreach ($this->getParameters() as $key => $flattenParamRoute) {
+                    if ($isAssoc) {
+                        if (isset($parameters[$key])) {
+                            $flattenParamRoute->setParameterValue($parameters[$key]);
+                            unset($parameters[$key]);
+                        }
+                    } else {
+                        $flattenParamRoute->setParameterValue(array_shift($parameters));
+                    }
+                }
+
 			}
 			return $parameters;
 		}

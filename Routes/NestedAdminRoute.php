@@ -2,11 +2,11 @@
 
 namespace Uneak\RoutesManagerBundle\Routes;
 
-use Uneak\RoutesManagerBundle\Routes\NestedRoute;
 
 class NestedAdminRoute extends NestedRoute {
 
 	protected $entity = null;
+	protected $formType = null;
 
 
 	public function __construct($id) {
@@ -25,6 +25,22 @@ class NestedAdminRoute extends NestedRoute {
 		$this->entity = $entity;
 		return $this;
 	}
+
+    /**
+     * @return null
+     */
+    public function getFormType()
+    {
+        return $this->formType;
+    }
+
+    /**
+     * @param null $formType
+     */
+    public function setFormType($formType)
+    {
+        $this->formType = $formType;
+    }
 
 
 }

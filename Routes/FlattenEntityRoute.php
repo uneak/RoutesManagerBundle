@@ -9,6 +9,7 @@ use Uneak\RoutesManagerBundle\Routes\FlattenParameterRoute;
 class FlattenEntityRoute extends FlattenParameterRoute {
 
     protected $entity;
+    protected $formType;
     protected $parameterSubject = null;
 	protected $em;
 
@@ -19,6 +20,10 @@ class FlattenEntityRoute extends FlattenParameterRoute {
 
     public function getEntity() {
         return $this->entity;
+    }
+
+    public function getFormType() {
+        return $this->formType;
     }
 
 	public function setParameterValue($parameterValue) {
@@ -34,12 +39,14 @@ class FlattenEntityRoute extends FlattenParameterRoute {
     public function getArray() {
         $array = parent::getArray();
         $array['entity'] = $this->entity;
+        $array['formType'] = $this->formType;
         return $array;
     }
 
     public function buildArray($array) {
         parent::buildArray($array);
         $this->entity = (isset($array['entity'])) ? $array['entity'] : '';
+        $this->formType = (isset($array['formType'])) ? $array['formType'] : '';
     }
     
     

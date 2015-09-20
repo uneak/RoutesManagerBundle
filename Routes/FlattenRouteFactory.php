@@ -24,19 +24,19 @@
 			'NestedEntityRoute'    => array(
 				'flatten'   => 'Uneak\RoutesManagerBundle\Routes\FlattenEntityRoute',
 				'functions' => array(
-					'NestedRoute', 'Id', 'ParameterPath', 'Host', 'MetaDatas', 'Controller', 'Action', 'Defaults', 'Requirements', 'Options', 'Schemes', 'Methods', 'Condition', 'ControllerAction', 'Parameters', 'CRUD', 'Parameter', 'Entity'
+					'NestedRoute', 'Id', 'ParameterPath', 'Host', 'MetaDatas', 'Controller', 'Action', 'Defaults', 'Requirements', 'Options', 'Schemes', 'Methods', 'Condition', 'ControllerAction', 'Parameters', 'CRUD', 'Parameter', 'Entity', 'FormType'
 				)
 			),
 			'NestedCRUDRoute'      => array(
 				'flatten'   => 'Uneak\RoutesManagerBundle\Routes\FlattenAdminRoute',
 				'functions' => array(
-					'NestedRoute', 'Id', 'Path', 'Host', 'MetaDatas', 'Controller', 'Action', 'Defaults', 'Requirements', 'Options', 'Schemes', 'Methods', 'Condition', 'ControllerAction', 'Parameters', 'CrudCRUD', 'Entity'
+					'NestedRoute', 'Id', 'Path', 'Host', 'MetaDatas', 'Controller', 'Action', 'Defaults', 'Requirements', 'Options', 'Schemes', 'Methods', 'Condition', 'ControllerAction', 'Parameters', 'CrudCRUD', 'Entity', 'FormType'
 				)
 			),
 			'NestedAdminRoute'     => array(
 				'flatten'   => 'Uneak\RoutesManagerBundle\Routes\FlattenAdminRoute',
 				'functions' => array(
-					'NestedRoute', 'Id', 'Path', 'Host', 'MetaDatas', 'Controller', 'Action', 'Defaults', 'Requirements', 'Options', 'Schemes', 'Methods', 'Condition', 'ControllerAction', 'Parameters', 'CRUD', 'Entity'
+					'NestedRoute', 'Id', 'Path', 'Host', 'MetaDatas', 'Controller', 'Action', 'Defaults', 'Requirements', 'Options', 'Schemes', 'Methods', 'Condition', 'ControllerAction', 'Parameters', 'CRUD', 'Entity', 'FormType'
 				)
 			),
 		);
@@ -273,4 +273,8 @@
 			$data["entity"] = ($nestedRoute->getEntity()) ? $nestedRoute->getEntity() : $entity;
 		}
 
+        protected function bFormType($nestedRoute, &$data) {
+            $formType = (isset($data["formType"])) ? $data["formType"] : null;
+            $data["formType"] = ($nestedRoute->getFormType()) ? $nestedRoute->getFormType() : $formType;
+        }
 	}

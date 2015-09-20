@@ -2,12 +2,12 @@
 
 namespace Uneak\RoutesManagerBundle\Routes;
 
-use Uneak\RoutesManagerBundle\Routes\NestedParameterRoute;
 use Doctrine\ORM\EntityManager;
 
 class NestedEntityRoute extends NestedParameterRoute {
 
-	protected $entity = null;
+    protected $entity = null;
+    protected $formType = null;
 
 	public function __construct($id, $entity = null, $parameterName = null, $parameterDefault = null, $parameterPattern = null) {
 		parent::__construct($id, $parameterName, $parameterDefault, $parameterPattern);
@@ -32,4 +32,12 @@ class NestedEntityRoute extends NestedParameterRoute {
 		return $this;
 	}
 
+    public function getFormType() {
+        return $this->formType;
+    }
+
+    public function setFormType($formType) {
+        $this->formType = $formType;
+        return $this;
+    }
 }

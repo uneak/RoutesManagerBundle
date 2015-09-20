@@ -9,6 +9,7 @@ class FlattenAdminRoute extends FlattenRoute {
 
     protected $admin;
     protected $entity;
+    protected $formType;
 
     public function __construct(Router $router, FlattenRouteManager $flattenRouteManager, $data = null) {
         parent::__construct($router, $flattenRouteManager, $data);
@@ -24,10 +25,15 @@ class FlattenAdminRoute extends FlattenRoute {
         return $this->entity;
     }
 
+    public function getFormType() {
+        return $this->formType;
+    }
+
     public function getArray() {
         $array = parent::getArray();
         $array['admin'] = $this->admin;
         $array['entity'] = $this->entity;
+        $array['formType'] = $this->formType;
         return $array;
     }
 
@@ -35,6 +41,7 @@ class FlattenAdminRoute extends FlattenRoute {
         parent::buildArray($array);
         $this->admin = (isset($array['admin'])) ? $array['admin'] : null;
         $this->entity = (isset($array['entity'])) ? $array['entity'] : null;
+        $this->formType = (isset($array['formType'])) ? $array['formType'] : null;
     }
 
 }
