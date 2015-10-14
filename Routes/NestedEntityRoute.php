@@ -8,6 +8,7 @@ class NestedEntityRoute extends NestedParameterRoute {
 
     protected $entity = null;
     protected $formType = null;
+    protected $handler = null;
 
 	public function __construct($id, $entity = null, $parameterName = null, $parameterDefault = null, $parameterPattern = null) {
 		parent::__construct($id, $parameterName, $parameterDefault, $parameterPattern);
@@ -38,6 +39,15 @@ class NestedEntityRoute extends NestedParameterRoute {
 
     public function setFormType($formType) {
         $this->formType = $formType;
+        return $this;
+    }
+
+    public function getHandler() {
+        return $this->handler;
+    }
+
+    public function setHandler($handler) {
+        $this->handler = $handler;
         return $this;
     }
 }

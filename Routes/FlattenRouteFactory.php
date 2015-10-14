@@ -24,19 +24,19 @@
 			'NestedEntityRoute'    => array(
 				'flatten'   => 'Uneak\RoutesManagerBundle\Routes\FlattenEntityRoute',
 				'functions' => array(
-					'NestedRoute', 'Id', 'ParameterPath', 'Host', 'MetaDatas', 'Controller', 'Action', 'Defaults', 'Requirements', 'Options', 'Schemes', 'Methods', 'Condition', 'ControllerAction', 'Parameters', 'CRUD', 'Parameter', 'Entity', 'FormType'
+					'NestedRoute', 'Id', 'ParameterPath', 'Host', 'MetaDatas', 'Controller', 'Action', 'Defaults', 'Requirements', 'Options', 'Schemes', 'Methods', 'Condition', 'ControllerAction', 'Parameters', 'CRUD', 'Parameter', 'Entity', 'FormType', 'Handler'
 				)
 			),
 			'NestedCRUDRoute'      => array(
 				'flatten'   => 'Uneak\RoutesManagerBundle\Routes\FlattenAdminRoute',
 				'functions' => array(
-					'NestedRoute', 'Id', 'Path', 'Host', 'MetaDatas', 'Controller', 'Action', 'Defaults', 'Requirements', 'Options', 'Schemes', 'Methods', 'Condition', 'ControllerAction', 'Parameters', 'CrudCRUD', 'Entity', 'FormType'
+					'NestedRoute', 'Id', 'Path', 'Host', 'MetaDatas', 'Controller', 'Action', 'Defaults', 'Requirements', 'Options', 'Schemes', 'Methods', 'Condition', 'ControllerAction', 'Parameters', 'CrudCRUD', 'Entity', 'FormType', 'Handler'
 				)
 			),
 			'NestedAdminRoute'     => array(
 				'flatten'   => 'Uneak\RoutesManagerBundle\Routes\FlattenAdminRoute',
 				'functions' => array(
-					'NestedRoute', 'Id', 'Path', 'Host', 'MetaDatas', 'Controller', 'Action', 'Defaults', 'Requirements', 'Options', 'Schemes', 'Methods', 'Condition', 'ControllerAction', 'Parameters', 'CRUD', 'Entity', 'FormType'
+					'NestedRoute', 'Id', 'Path', 'Host', 'MetaDatas', 'Controller', 'Action', 'Defaults', 'Requirements', 'Options', 'Schemes', 'Methods', 'Condition', 'ControllerAction', 'Parameters', 'CRUD', 'Entity', 'FormType', 'Handler'
 				)
 			),
 		);
@@ -277,4 +277,12 @@
             $formType = (isset($data["formType"])) ? $data["formType"] : null;
             $data["formType"] = ($nestedRoute->getFormType()) ? $nestedRoute->getFormType() : $formType;
         }
+
+
+        protected function bHandler($nestedRoute, &$data) {
+            $handler = (isset($data["handler"])) ? $data["handler"] : null;
+            $data["handler"] = ($nestedRoute->getHandler()) ? $nestedRoute->getHandler() : $handler;
+        }
+
+
 	}

@@ -7,6 +7,7 @@ class NestedAdminRoute extends NestedRoute {
 
 	protected $entity = null;
 	protected $formType = null;
+	protected $handler = null;
 
 
 	public function __construct($id) {
@@ -40,6 +41,22 @@ class NestedAdminRoute extends NestedRoute {
     public function setFormType($formType)
     {
         $this->formType = $formType;
+    }
+
+    /**
+     * @return null
+     */
+    public function getHandler()
+    {
+        return $this->handler;
+    }
+
+    /**
+     * @param null $handler
+     */
+    public function setHandler($handler)
+    {
+        $this->handler = $handler;
     }
 
 

@@ -10,6 +10,7 @@ class FlattenEntityRoute extends FlattenParameterRoute {
 
     protected $entity;
     protected $formType;
+    protected $handler;
     protected $parameterSubject = null;
 	protected $em;
 
@@ -26,6 +27,10 @@ class FlattenEntityRoute extends FlattenParameterRoute {
         return $this->formType;
     }
 
+    public function getHandler() {
+        return $this->handler;
+    }
+
 	public function setParameterValue($parameterValue) {
 		parent::setParameterValue($parameterValue);
 		$this->parameterSubject = $this->getNestedRoute()->findEntity($this->em, $this->getEntity(), $parameterValue);
@@ -40,6 +45,7 @@ class FlattenEntityRoute extends FlattenParameterRoute {
         $array = parent::getArray();
         $array['entity'] = $this->entity;
         $array['formType'] = $this->formType;
+        $array['handler'] = $this->handler;
         return $array;
     }
 
@@ -47,6 +53,7 @@ class FlattenEntityRoute extends FlattenParameterRoute {
         parent::buildArray($array);
         $this->entity = (isset($array['entity'])) ? $array['entity'] : '';
         $this->formType = (isset($array['formType'])) ? $array['formType'] : '';
+        $this->handler = (isset($array['handler'])) ? $array['handler'] : '';
     }
     
     
