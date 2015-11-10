@@ -7,6 +7,7 @@ class NestedGridRoute extends NestedAdminRoute {
 
 	protected $rowActions = array();
 	protected $columns = array();
+	protected $ids = array();
 	protected $gridRoute;
 
 	public function __construct($id) {
@@ -26,6 +27,15 @@ class NestedGridRoute extends NestedAdminRoute {
 	public function addRowAction($key, $path) {
 		$this->rowActions[$key] = $path;
 		return $this;
+	}
+
+	public function addId($key, $path) {
+		$this->ids[$key] = $path;
+		return $this;
+	}
+
+	public function getIds() {
+		return $this->ids;
 	}
 
 	public function getRowAction($key) {

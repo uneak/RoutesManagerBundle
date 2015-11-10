@@ -34,11 +34,17 @@
 
 
 
-		public function gridFields(QueryBuilder $qb, $params) {
+		public function gridFields(QueryBuilder $qb, $params, array $ids = array()) {
 
 			$select = array();
 
-			$select[] = 'o.id as DT_RowId';
+
+			foreach ($ids as $key => $path) {
+				$field = $this->_getFieldName($path);
+				$fieldAlias = "idkey_".$key;
+				$select[] = $field . ' as ' . $fieldAlias;
+			}
+
 
 			foreach ($params['columns'] as $columns) {
 				if ($columns['name'] && substr($columns['name'], 0, 1) != '_') {

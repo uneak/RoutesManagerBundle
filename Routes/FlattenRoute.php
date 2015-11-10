@@ -36,40 +36,44 @@
 			$this->crud = (isset($array['crud'])) ? $array['crud'] : '';
 		}
 
-		function getMetaDatas() {
+		public function getMetaDatas() {
 			return $this->metaDatas;
 		}
 
-		function setMetaDatas($metaDatas) {
+		public function setMetaDatas($metaDatas) {
 			$this->metaDatas = $metaDatas;
 
 			return $this;
 		}
 
-		function getMetaData($key) {
+		public function getMetaData($key) {
 			return (isset($this->metaDatas[$key])) ? $this->metaDatas[$key] : null;
 		}
 
-		function setMetaData($key, $value) {
+		public function setMetaData($key, $value) {
 			$this->metaDatas[$key] = $value;
 
 			return $this;
 		}
 
-		function getParameters() {
+		public function getParameters() {
 			return $this->parameters;
 		}
 
-		function getParameter($id) {
+		public function getParameter($id) {
 			return $this->parameters[$id];
 		}
 
-		function setParameter($id, FlattenRoute $flattenRoute) {
+		public function hasParameter($id) {
+			return (isset($this->parameters[$id]));
+		}
+
+		public function setParameter($id, FlattenRoute $flattenRoute) {
 			$this->parameters[$id] = $flattenRoute;
 			return $this;
 		}
 
-		function getChildren() {
+		public function getChildren() {
 			return $this->children;
 		}
 
@@ -129,7 +133,7 @@
 			return null;
 		}
 
-		function getSlug() {
+		public function getSlug() {
 			return $this->slug;
 		}
 
